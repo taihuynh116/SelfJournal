@@ -55,6 +55,18 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constant\ConstantValue.cs" />
+    <Compile Include="Database\Dao\DiaryDao.cs" />
+    <Compile Include="Database\EF\Diary.cs" />
+    <Compile Include="Database\EF\Emotion.cs" />
+    <Compile Include="Database\EF\Expenditure.cs" />
+    <Compile Include="Database\EF\ExpenditureType.cs" />
+    <Compile Include="Database\EF\Goal.cs" />
+    <Compile Include="Database\EF\GoalOfDay.cs" />
+    <Compile Include="Database\EF\GoalOfMonth.cs" />
+    <Compile Include="Database\EF\Habbit.cs" />
+    <Compile Include="Database\EF\HabbitType.cs" />
+    <Compile Include="Database\EF\SelfJournalDbContext.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System;
 using System.Text;
+using SelfJournal.Database.EF;
 
 namespace SelfJournal
 {
@@ -18,18 +19,10 @@ namespace SelfJournal
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
 
-            TextView tvGoalOfYear = (TextView)this.FindViewById(Resource.Id.tvGoalOfYear); 
-            var res = GetData();
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < res.Count; i++)
-            {
-                sb.Append("- " + res[i]);
-                if (i < res.Count - 1)
-                {
-                    sb.Append("\n");
-                }
-            }
-            tvGoalOfYear.Text = sb.ToString();
+            TextView tvGoalOfYear = (TextView)this.FindViewById(Resource.Id.tvGoalOfYear);
+
+            SelfJournalDbContext.Instance.UpdateDiary("Ngày 3");
+            SelfJournalDbContext.Instance.UpdateDiary("Ngày 10");
         }
         public List<string> GetData()
         {
