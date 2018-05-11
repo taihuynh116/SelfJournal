@@ -15,5 +15,6 @@ namespace SelfJournal.Constant
         public static string GoalOfDay = "GoalOfDay";
         public static string Habbit = "Habbit";
         public static string HabbitType = "HabbitType";
+        public static string Month = "Month";
     }
 }

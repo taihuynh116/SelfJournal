@@ -72,6 +72,13 @@ namespace SelfJournal.Database.EF
                 return GetDataTable(typeof(HabbitType), ConstantValue.HabbitType).Cast<HabbitType>().ToList();
             }
         }
+        public List<Month> Months
+        {
+            get
+            {
+                return GetDataTable(typeof(Month), ConstantValue.Month).Cast<Month>().ToList();
+            }
+        }
         public SelfJournalDbContext()
         {
 
@@ -118,7 +125,10 @@ namespace SelfJournal.Database.EF
             using (SqlConnection connection = new SqlConnection(ConstantValue.ConnectionString))
             {
                 SqlCommand command = new SqlCommand("insert into " + ConstantValue.Diary +" (Content)"+ " values (\'"+ content+"\');", connection);
-                string abc = "insert into " + ConstantValue.Diary + " (Content)" + " values (\'" + content + "\');";
+
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
 
                 //insert into Diary(Content) values('Ngày 5');
             }

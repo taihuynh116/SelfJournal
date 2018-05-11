@@ -66,6 +66,7 @@
     <Compile Include="Database\EF\GoalOfMonth.cs" />
     <Compile Include="Database\EF\Habbit.cs" />
     <Compile Include="Database\EF\HabbitType.cs" />
+    <Compile Include="Database\EF\Month.cs" />
     <Compile Include="Database\EF\SelfJournalDbContext.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />

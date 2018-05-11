@@ -20,9 +20,17 @@ namespace SelfJournal
             SetContentView(Resource.Layout.Main);
 
             TextView tvGoalOfYear = (TextView)this.FindViewById(Resource.Id.tvGoalOfYear);
-
-            SelfJournalDbContext.Instance.UpdateDiary("Ngày 3");
-            SelfJournalDbContext.Instance.UpdateDiary("Ngày 10");
+            List<Goal> goals = SelfJournalDbContext.Instance.Goals;
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < goals.Count; i++)
+            {
+                sb.Append("- " + goals[i].Name);
+                if (i != goals.Count - 1)
+                {
+                    sb.Append("\n");
+                }
+            }
+            tvGoalOfYear.Text = sb.ToString();
         }
         public List<string> GetData()
         {
