@@ -6,6 +6,10 @@ using System.Data.SqlClient;
 using System;
 using System.Text;
 using SelfJournal.Database.EF;
+using SelfJournal.Database.Dao;
+using SelfJournal.Constant;
+using SelfJournal.SingleData;
+using SelfJournal.Utilities;
 
 namespace SelfJournal
 {
@@ -19,43 +23,18 @@ namespace SelfJournal
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
 
-            TextView tvGoalOfYear = (TextView)this.FindViewById(Resource.Id.tvGoalOfYear);
-            List<Goal> goals = SelfJournalDbContext.Instance.Goals;
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < goals.Count; i++)
-            {
-                sb.Append("- " + goals[i].Name);
-                if (i != goals.Count - 1)
-                {
-                    sb.Append("\n");
-                }
-            }
-            tvGoalOfYear.Text = sb.ToString();
-        }
-        public List<string> GetData()
-        {
-            List<string> data = new List<string>();
-            string conn = "data source=103.252.252.163;initial catalog=SelfJournal;persist security info=True;user id=misery;password=Skarner116!;MultipleActiveResultSets=True;App=EntityFramework";
-            using (SqlConnection connection = new SqlConnection(conn))
-            {
+            #region Get Layout Controls
+            Singleton.Instance.MainActivity = this;
+            Singleton.Instance.tvGoalOfYear = (TextView)this.FindViewById(Resource.Id.tvGoalOfYear);
+            Singleton.Instance.tvMonthTitle = (TextView)this.FindViewById(Resource.Id.tvMonthTitle);
+            Singleton.Instance.tvGoalOfMonth = (TextView)this.FindViewById(Resource.Id.tvGoalOfMonth);
+            Singleton.Instance.tvDayTitle = (TextView)this.FindViewById(Resource.Id.tvDayTitle);
+            Singleton.Instance.tvGoalOfDay = (TextView)this.FindViewById(Resource.Id.tvGoalOfDay);
+            #endregion
 
-                SqlCommand command = new SqlCommand("select Name from Goal", connection);
-                try
-                {
-                    connection.Open();
-                    SqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        data.Add(reader[0].ToString());
-                    }
-                    reader.Close();
-                }
-                catch (Exception ex)
-                {
-                    throw;
-                }
-            }
-            return data;
+            GoalUtils.GetGoalOfYear();
+            GoalUtils.GetGoalOfMonth();
+            GoalUtils.GetGoalOfDay();
         }
     }
     

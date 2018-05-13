@@ -55,8 +55,13 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActivityStorage\ExpenditureActivity.cs" />
     <Compile Include="Constant\ConstantValue.cs" />
     <Compile Include="Database\Dao\DiaryDao.cs" />
+    <Compile Include="Database\Dao\GoalDao.cs" />
+    <Compile Include="Database\Dao\GoalOfDayDao.cs" />
+    <Compile Include="Database\Dao\GoalOfMonthDao.cs" />
+    <Compile Include="Database\Dao\MonthDao.cs" />
     <Compile Include="Database\EF\Diary.cs" />
     <Compile Include="Database\EF\Emotion.cs" />
     <Compile Include="Database\EF\Expenditure.cs" />
@@ -71,12 +76,17 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SingleData\Singleton.cs" />
+    <Compile Include="Utilities\GoalUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GettingStarted.Xamarin" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />
+    <AndroidResource Include="Resources\layout\Expenditure.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml">
