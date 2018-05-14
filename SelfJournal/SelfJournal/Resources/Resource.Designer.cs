@@ -50,6 +50,9 @@ namespace SelfJournal
 			// aapt resource value: 0x7f040004
 			public const int tvDayTitle = 2130968580;
 			
+			// aapt resource value: 0x7f040009
+			public const int tvDiary = 2130968585;
+			
 			// aapt resource value: 0x7f040007
 			public const int tvEmotion = 2130968583;
 			
@@ -64,6 +67,9 @@ namespace SelfJournal
 			
 			// aapt resource value: 0x7f040001
 			public const int tvGoalOfYear = 2130968577;
+			
+			// aapt resource value: 0x7f040008
+			public const int tvHabbit = 2130968584;
 			
 			// aapt resource value: 0x7f040002
 			public const int tvMonthTitle = 2130968578;
@@ -82,13 +88,19 @@ namespace SelfJournal
 		{
 			
 			// aapt resource value: 0x7f020000
-			public const int Emotion = 2130837504;
+			public const int Diary = 2130837504;
 			
 			// aapt resource value: 0x7f020001
-			public const int Expenditure = 2130837505;
+			public const int Emotion = 2130837505;
 			
 			// aapt resource value: 0x7f020002
-			public const int Main = 2130837506;
+			public const int Expenditure = 2130837506;
+			
+			// aapt resource value: 0x7f020003
+			public const int Habbit = 2130837507;
+			
+			// aapt resource value: 0x7f020004
+			public const int Main = 2130837508;
 			
 			static Layout()
 			{
@@ -105,6 +117,9 @@ namespace SelfJournal
 			
 			// aapt resource value: 0x7f030000
 			public const int app_name = 2130903040;
+			
+			// aapt resource value: 0x7f030009
+			public const int diaryTitle = 2130903049;
 			
 			// aapt resource value: 0x7f030007
 			public const int emotionTitle = 2130903047;
@@ -126,6 +141,9 @@ namespace SelfJournal
 			
 			// aapt resource value: 0x7f030001
 			public const int goalOfYear = 2130903041;
+			
+			// aapt resource value: 0x7f030008
+			public const int habbitTitle = 2130903048;
 			
 			static String()
 			{

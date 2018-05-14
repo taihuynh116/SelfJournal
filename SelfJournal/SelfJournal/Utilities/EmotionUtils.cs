@@ -16,7 +16,7 @@ namespace SelfJournal.Utilities
         }
         public static void GetEmotion()
         {
-            var resEmotions = EmotionDao.GetEmotions();
+            var resEmotions = EmotionDao.GetEmotions(Singleton.Instance.IDMonth);
             LinearLayout linearLayout = null;
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.WrapContent);
             int idMonth = -1;
@@ -59,7 +59,7 @@ namespace SelfJournal.Utilities
 
                     linearLayout.AddView(tvMonthTitle);
                 }
-                sb.Append(resEmotions[i].Ranking+"\t");
+                sb.Append(resEmotions[i].Ranking+"   ");
                 if (i == resEmotions.Count - 1)
                 {
                     TextView tvDayExpenditure = new TextView(Singleton.Instance.EmotionActivity);

@@ -30,6 +30,8 @@ namespace SelfJournal.SingleData
         public TextView tvGoalOfDay { get; set; }
         public TextView tvExpenditure { get; set; }
         public TextView tvEmotion { get; set; }
+        public TextView tvHabbit { get; set; }
+        public TextView tvDiary { get; set; }
         #endregion
 
         #region Expenditure Activity and its controls
@@ -40,6 +42,16 @@ namespace SelfJournal.SingleData
         #region Emotion Activity and its controls
         public EmotionActivity EmotionActivity { get; set; }
         public LinearLayout EmLinearLayout { get; set; }
+        #endregion
+
+        #region Habbit Activity and its controls
+        public HabbitActivity HabbitActivity { get; set; }
+        public LinearLayout HLinearLayout { get; set; }
+        #endregion
+
+        #region Diary Activity and its controls
+        public DiaryActivity DiaryActivity { get; set; }
+        public LinearLayout DLinearLayout { get; set; }
         #endregion
     }
 }

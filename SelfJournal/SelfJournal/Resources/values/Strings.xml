@@ -8,4 +8,6 @@
   <string name ="expenditureMonth">Month</string>
   <string name ="expenditureDay">Day</string>
   <string name ="emotionTitle">Emotion</string>
+  <string name ="habbitTitle">Habbit</string>
+  <string name ="diaryTitle">Diary</string>
 </resources>

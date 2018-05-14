@@ -19,7 +19,7 @@ namespace SelfJournal.Utilities
         }
         public static void GetExpenditure()
         {
-            var resExpenditures = ExpenditureDao.GetExpenditures();
+            var resExpenditures = ExpenditureDao.GetExpenditures(Singleton.Instance.IDMonth);
             LinearLayout linearLayout = null;
             LinearLayout bLinearLayout = null;
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.WrapContent);
@@ -51,7 +51,7 @@ namespace SelfJournal.Utilities
                     var resMonth = MonthDao.GetMonth(idMonth);
                     if (resMonth != null)
                     {
-                        tvMonthTitle.Text = "Month: "+ resMonth.Name;
+                        tvMonthTitle.Text = "Month: " + resMonth.Name;
                     }
                     tvMonthTitle.TextSize = 20;
                     tvMonthTitle.SetTypeface(Android.Graphics.Typeface.Default, Android.Graphics.TypefaceStyle.Bold);
@@ -87,11 +87,7 @@ namespace SelfJournal.Utilities
                     idDay = resExpenditures[i].IDDay;
                     TextView tvDayTitle = new TextView(Singleton.Instance.ExpenditureActivity);
                     tvDayTitle.LayoutParameters = lp;
-                    var resMonth = MonthDao.GetMonth(idMonth);
-                    if (resMonth != null)
-                    {
-                        tvDayTitle.Text = "Day: " + idDay;
-                    }
+                    tvDayTitle.Text = "Day: " + idDay;
                     tvDayTitle.TextSize = 17;
                     tvDayTitle.SetTypeface(Android.Graphics.Typeface.Default, Android.Graphics.TypefaceStyle.Bold);
 
@@ -103,11 +99,11 @@ namespace SelfJournal.Utilities
                     switch (resExpenditureType.Positive)
                     {
                         case true:
-                            sbThu.Append("\t+" + resExpenditures[i].Amount);
+                            sbThu.Append("   +" + resExpenditures[i].Amount);
                             sum += resExpenditures[i].Amount;
                             break;
                         case false:
-                            sbChi.Append("\t-" + resExpenditures[i].Amount);
+                            sbChi.Append("   -" + resExpenditures[i].Amount);
                             sum += -resExpenditures[i].Amount;
                             break;
                     }

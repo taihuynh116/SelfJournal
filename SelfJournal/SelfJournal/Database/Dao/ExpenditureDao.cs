@@ -19,5 +19,11 @@ namespace SelfJournal.Database.Dao
             res.Sort();
             return res;
         }
+        public static List<Expenditure> GetExpenditures(int idMonth)
+        {
+            var res = SelfJournalDbContext.Instance.Expenditures.Where(x => x.IDMonth == idMonth);
+            var list = res.ToList(); list.Sort();
+            return list;
+        }
     }
 }

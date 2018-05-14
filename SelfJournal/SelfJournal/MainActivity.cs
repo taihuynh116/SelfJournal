@@ -33,10 +33,14 @@ namespace SelfJournal
             Singleton.Instance.tvGoalOfDay = (TextView)this.FindViewById(Resource.Id.tvGoalOfDay);
             Singleton.Instance.tvExpenditure = (TextView)this.FindViewById(Resource.Id.tvExpdenditure);
             Singleton.Instance.tvEmotion = (TextView)this.FindViewById(Resource.Id.tvEmotion);
+            Singleton.Instance.tvHabbit = (TextView)this.FindViewById(Resource.Id.tvHabbit);
+            Singleton.Instance.tvDiary = (TextView)this.FindViewById(Resource.Id.tvDiary);
             #endregion
 
             Singleton.Instance.tvExpenditure.SetOnClickListener(new ExpenditureClickListener());
             Singleton.Instance.tvEmotion.SetOnClickListener(new EmotionClickListener());
+            Singleton.Instance.tvHabbit.SetOnClickListener(new HabbitClickListener());
+            Singleton.Instance.tvDiary.SetOnClickListener(new DiaryClickListener());
 
             GoalUtils.GetGoalOfYear();
             GoalUtils.GetGoalOfMonth();
@@ -55,6 +59,20 @@ namespace SelfJournal
         public void OnClick(View v)
         {
             EmotionUtils.StartEmotionActivity();
+        }
+    }
+    public class HabbitClickListener : Java.Lang.Object, View.IOnClickListener
+    {
+        public void OnClick(View v)
+        {
+            HabbitUtils.StartHabbitActivity();
+        }
+    }
+    public class DiaryClickListener : Java.Lang.Object, View.IOnClickListener
+    {
+        public void OnClick(View v)
+        {
+            DiaryUtils.StartDiaryAcitivy();
         }
     }
 }
