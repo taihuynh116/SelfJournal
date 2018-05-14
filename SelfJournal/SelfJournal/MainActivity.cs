@@ -10,6 +10,7 @@ using SelfJournal.Database.Dao;
 using SelfJournal.Constant;
 using SelfJournal.SingleData;
 using SelfJournal.Utilities;
+using Android.Views;
 
 namespace SelfJournal
 {
@@ -30,13 +31,31 @@ namespace SelfJournal
             Singleton.Instance.tvGoalOfMonth = (TextView)this.FindViewById(Resource.Id.tvGoalOfMonth);
             Singleton.Instance.tvDayTitle = (TextView)this.FindViewById(Resource.Id.tvDayTitle);
             Singleton.Instance.tvGoalOfDay = (TextView)this.FindViewById(Resource.Id.tvGoalOfDay);
+            Singleton.Instance.tvExpenditure = (TextView)this.FindViewById(Resource.Id.tvExpdenditure);
+            Singleton.Instance.tvEmotion = (TextView)this.FindViewById(Resource.Id.tvEmotion);
             #endregion
+
+            Singleton.Instance.tvExpenditure.SetOnClickListener(new ExpenditureClickListener());
+            Singleton.Instance.tvEmotion.SetOnClickListener(new EmotionClickListener());
 
             GoalUtils.GetGoalOfYear();
             GoalUtils.GetGoalOfMonth();
             GoalUtils.GetGoalOfDay();
         }
     }
-    
+    public class ExpenditureClickListener : Java.Lang.Object, View.IOnClickListener
+    {
+        public void OnClick(View v)
+        {
+            ExpenditureUtils.StartExpenditureActivity();
+        }
+    }
+    public class EmotionClickListener : Java.Lang.Object, View.IOnClickListener
+    {
+        public void OnClick(View v)
+        {
+            EmotionUtils.StartEmotionActivity();
+        }
+    }
 }
 

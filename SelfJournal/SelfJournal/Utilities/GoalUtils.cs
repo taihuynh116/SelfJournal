@@ -26,14 +26,14 @@ namespace SelfJournal.Utilities
         public static void GetGoalOfMonth()
         {
             DateTime dt = DateTime.Now;
-            int idMonth = dt.Month;
-            var resMonth = MonthDao.GetMonth(idMonth);
+            Singleton.Instance.IDMonth = dt.Month;
+            var resMonth = MonthDao.GetMonth(Singleton.Instance.IDMonth);
             if (resMonth != null)
             {
                 Singleton.Instance.tvMonthTitle.Text += ": " + resMonth.Name;
             }
 
-            List<GoalOfMonth> goms = GoalOfMonthDao.GetGoalOfMonths(idMonth);
+            List<GoalOfMonth> goms = GoalOfMonthDao.GetGoalOfMonths(Singleton.Instance.IDMonth);
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < goms.Count; i++)
             {
@@ -48,8 +48,8 @@ namespace SelfJournal.Utilities
         public static void GetGoalOfDay()
         {
             DateTime dt = DateTime.Now;
-            int idDay = dt.Day;
-            List<GoalOfDay> gods = GoalOfDayhDao.GetGoalOfDays(idDay);
+            Singleton.Instance.IDDay = dt.Day;
+            List<GoalOfDay> gods = GoalOfDayhDao.GetGoalOfDays(Singleton.Instance.IDDay);
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < gods.Count; i++)
             {
@@ -60,7 +60,7 @@ namespace SelfJournal.Utilities
                     sb.Append("\n");
                 }
             }
-            Singleton.Instance.tvDayTitle.Text += ": " + idDay.ToString();
+            Singleton.Instance.tvDayTitle.Text += ": " + Singleton.Instance.IDDay.ToString();
             Singleton.Instance.tvGoalOfDay.Text = sb.ToString();
         }
         public static void AppendGoalOfMonth(ref StringBuilder sb, GoalOfMonth gom)

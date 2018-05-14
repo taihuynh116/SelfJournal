@@ -7,4 +7,5 @@
   <string name ="expenditureTitle">Expenditure</string>
   <string name ="expenditureMonth">Month</string>
   <string name ="expenditureDay">Day</string>
+  <string name ="emotionTitle">Emotion</string>
 </resources>

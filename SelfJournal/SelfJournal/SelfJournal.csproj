@@ -55,9 +55,13 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActivityStorage\EmotionActivity.cs" />
     <Compile Include="ActivityStorage\ExpenditureActivity.cs" />
     <Compile Include="Constant\ConstantValue.cs" />
     <Compile Include="Database\Dao\DiaryDao.cs" />
+    <Compile Include="Database\Dao\EmotionDao.cs" />
+    <Compile Include="Database\Dao\ExpenditureDao.cs" />
+    <Compile Include="Database\Dao\ExpenditureTypeDao.cs" />
     <Compile Include="Database\Dao\GoalDao.cs" />
     <Compile Include="Database\Dao\GoalOfDayDao.cs" />
     <Compile Include="Database\Dao\GoalOfMonthDao.cs" />
@@ -77,6 +81,8 @@
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SingleData\Singleton.cs" />
+    <Compile Include="Utilities\EmotionUtils.cs" />
+    <Compile Include="Utilities\ExpenditureUtils.cs" />
     <Compile Include="Utilities\GoalUtils.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -85,6 +91,9 @@
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\layout\Expenditure.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\Emotion.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

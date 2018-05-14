@@ -44,20 +44,29 @@ namespace SelfJournal
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f040003
-			public const int tvDayTitle = 2130968579;
+			// aapt resource value: 0x7f040000
+			public const int overallLayout = 2130968576;
 			
 			// aapt resource value: 0x7f040004
-			public const int tvGoalOfDay = 2130968580;
+			public const int tvDayTitle = 2130968580;
 			
-			// aapt resource value: 0x7f040002
-			public const int tvGoalOfMonth = 2130968578;
+			// aapt resource value: 0x7f040007
+			public const int tvEmotion = 2130968583;
 			
-			// aapt resource value: 0x7f040000
-			public const int tvGoalOfYear = 2130968576;
+			// aapt resource value: 0x7f040006
+			public const int tvExpdenditure = 2130968582;
+			
+			// aapt resource value: 0x7f040005
+			public const int tvGoalOfDay = 2130968581;
+			
+			// aapt resource value: 0x7f040003
+			public const int tvGoalOfMonth = 2130968579;
 			
 			// aapt resource value: 0x7f040001
-			public const int tvMonthTitle = 2130968577;
+			public const int tvGoalOfYear = 2130968577;
+			
+			// aapt resource value: 0x7f040002
+			public const int tvMonthTitle = 2130968578;
 			
 			static Id()
 			{
@@ -73,10 +82,13 @@ namespace SelfJournal
 		{
 			
 			// aapt resource value: 0x7f020000
-			public const int Expenditure = 2130837504;
+			public const int Emotion = 2130837504;
 			
 			// aapt resource value: 0x7f020001
-			public const int Main = 2130837505;
+			public const int Expenditure = 2130837505;
+			
+			// aapt resource value: 0x7f020002
+			public const int Main = 2130837506;
 			
 			static Layout()
 			{
@@ -93,6 +105,9 @@ namespace SelfJournal
 			
 			// aapt resource value: 0x7f030000
 			public const int app_name = 2130903040;
+			
+			// aapt resource value: 0x7f030007
+			public const int emotionTitle = 2130903047;
 			
 			// aapt resource value: 0x7f030006
 			public const int expenditureDay = 2130903046;

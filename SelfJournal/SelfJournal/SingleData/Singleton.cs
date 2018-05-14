@@ -1,4 +1,5 @@
 ﻿using Android.Widget;
+using SelfJournal.ActivityStorage;
 using System;
 
 namespace SelfJournal.SingleData
@@ -14,6 +15,12 @@ namespace SelfJournal.SingleData
                 return instance;
             }
         }
+
+        #region Day Data
+        public int IDMonth { get; set; }
+        public int IDDay { get; set; }
+        #endregion
+
         #region Main Activity and its controls
         public MainActivity MainActivity { get; set; }
         public TextView tvGoalOfYear { get; set; }
@@ -21,8 +28,18 @@ namespace SelfJournal.SingleData
         public TextView tvGoalOfMonth { get; set; }
         public TextView tvDayTitle { get; set; }
         public TextView tvGoalOfDay { get; set; }
+        public TextView tvExpenditure { get; set; }
+        public TextView tvEmotion { get; set; }
         #endregion
 
+        #region Expenditure Activity and its controls
+        public ExpenditureActivity ExpenditureActivity { get; set; }
+        public LinearLayout ELinearLayout { get; set; }
+        #endregion
 
+        #region Emotion Activity and its controls
+        public EmotionActivity EmotionActivity { get; set; }
+        public LinearLayout EmLinearLayout { get; set; }
+        #endregion
     }
 }

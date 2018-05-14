@@ -14,22 +14,22 @@ using SelfJournal.Utilities;
 
 namespace SelfJournal.ActivityStorage
 {
-    [Activity(Label = "ExpenditureActivity")]
-    public class ExpenditureActivity : Activity
+    [Activity(Label = "EmotionActivity")]
+    public class EmotionActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
             // Create your application here
-            SetContentView(Resource.Layout.Expenditure);
+            SetContentView(Resource.Layout.Emotion);
 
             #region Get Layout Controls
-            Singleton.Instance.ExpenditureActivity = this;
-            Singleton.Instance.ELinearLayout = (LinearLayout)this.FindViewById(Resource.Id.overallLayout);
+            Singleton.Instance.EmotionActivity = this;
+            Singleton.Instance.EmLinearLayout = (LinearLayout)this.FindViewById(Resource.Id.overallLayout);
             #endregion
 
-            ExpenditureUtils.GetExpenditure();
+            EmotionUtils.GetEmotion();
         }
     }
 }
