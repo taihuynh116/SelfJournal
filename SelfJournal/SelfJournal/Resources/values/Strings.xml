@@ -4,6 +4,7 @@
   <string name="goalOfYear">Goal of Year</string>
   <string name="goalOfMonth">Goal of Month</string>
   <string name="goalOfDay">Goal of Day</string>
+  <string name="goalTitle">Goal</string>
   <string name ="expenditureTitle">Expenditure</string>
   <string name ="expenditureMonth">Month</string>
   <string name ="expenditureDay">Day</string>

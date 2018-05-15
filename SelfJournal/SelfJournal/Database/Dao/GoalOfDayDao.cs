@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SelfJournal.Database.Dao
 {
-    public class GoalOfDayhDao
+    public class GoalOfDayDao
     {
         public static List<GoalOfDay> GetGoalOfDays(int idDay)
         {

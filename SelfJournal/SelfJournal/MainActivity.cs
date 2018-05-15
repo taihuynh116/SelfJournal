@@ -26,25 +26,29 @@ namespace SelfJournal
 
             #region Get Layout Controls
             Singleton.Instance.MainActivity = this;
-            Singleton.Instance.tvGoalOfYear = (TextView)this.FindViewById(Resource.Id.tvGoalOfYear);
-            Singleton.Instance.tvMonthTitle = (TextView)this.FindViewById(Resource.Id.tvMonthTitle);
-            Singleton.Instance.tvGoalOfMonth = (TextView)this.FindViewById(Resource.Id.tvGoalOfMonth);
-            Singleton.Instance.tvDayTitle = (TextView)this.FindViewById(Resource.Id.tvDayTitle);
-            Singleton.Instance.tvGoalOfDay = (TextView)this.FindViewById(Resource.Id.tvGoalOfDay);
+            Singleton.Instance.tvGoal = (TextView)this.FindViewById(Resource.Id.tvGoal);
             Singleton.Instance.tvExpenditure = (TextView)this.FindViewById(Resource.Id.tvExpdenditure);
             Singleton.Instance.tvEmotion = (TextView)this.FindViewById(Resource.Id.tvEmotion);
             Singleton.Instance.tvHabbit = (TextView)this.FindViewById(Resource.Id.tvHabbit);
             Singleton.Instance.tvDiary = (TextView)this.FindViewById(Resource.Id.tvDiary);
             #endregion
 
+            Singleton.Instance.tvGoal.SetOnClickListener(new GoalClickListener());
             Singleton.Instance.tvExpenditure.SetOnClickListener(new ExpenditureClickListener());
             Singleton.Instance.tvEmotion.SetOnClickListener(new EmotionClickListener());
             Singleton.Instance.tvHabbit.SetOnClickListener(new HabbitClickListener());
             Singleton.Instance.tvDiary.SetOnClickListener(new DiaryClickListener());
 
-            GoalUtils.GetGoalOfYear();
-            GoalUtils.GetGoalOfMonth();
-            GoalUtils.GetGoalOfDay();
+            DateTime dt = DateTime.Now;
+            Singleton.Instance.IDMonth = dt.Month;
+            Singleton.Instance.IDDay = dt.Day;
+        }
+    }
+    public class GoalClickListener : Java.Lang.Object, View.IOnClickListener
+    {
+        public void OnClick(View v)
+        {
+            GoalUtils.StartGoalActivity();
         }
     }
     public class ExpenditureClickListener : Java.Lang.Object, View.IOnClickListener

@@ -79,6 +79,12 @@ namespace SelfJournal.Database.EF
                 return GetDataTable(typeof(Month), ConstantValue.Month).Cast<Month>().ToList();
             }
         }
+        public List<GoalTime> GoalTimes
+        {
+            get {
+                return GetDataTable(typeof(GoalTime), ConstantValue.GoalTime).Cast<GoalTime>().ToList();
+            }
+        }
         public SelfJournalDbContext()
         {
 

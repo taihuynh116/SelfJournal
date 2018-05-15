@@ -19,15 +19,12 @@ namespace SelfJournal.SingleData
         #region Day Data
         public int IDMonth { get; set; }
         public int IDDay { get; set; }
+        public int IDGoalTime { get; set; }
         #endregion
 
         #region Main Activity and its controls
         public MainActivity MainActivity { get; set; }
-        public TextView tvGoalOfYear { get; set; }
-        public TextView tvMonthTitle { get; set; }
-        public TextView tvGoalOfMonth { get; set; }
-        public TextView tvDayTitle { get; set; }
-        public TextView tvGoalOfDay { get; set; }
+        public TextView tvGoal { get; set; }
         public TextView tvExpenditure { get; set; }
         public TextView tvEmotion { get; set; }
         public TextView tvHabbit { get; set; }
@@ -52,6 +49,14 @@ namespace SelfJournal.SingleData
         #region Diary Activity and its controls
         public DiaryActivity DiaryActivity { get; set; }
         public LinearLayout DLinearLayout { get; set; }
+        #endregion
+
+        #region Goal Activity and its controls
+        public GoalActivity GoalActivity { get; set; }
+        public LinearLayout GLinearLayout { get; set; }
+        public TextView tvGoalTitle { get; set; }
+        public TextView tvGoalContent { get; set; }
+        public Spinner GoalSpinner { get; set; }
         #endregion
     }
 }
