@@ -31,7 +31,10 @@ namespace SelfJournal.Utilities
 
             TextView tvDiary = new TextView(Singleton.Instance.DiaryActivity);
             tvDiary.LayoutParameters = lp;
-            tvDiary.Text = resDiary.Content;
+            if (resDiary != null)
+            {
+                tvDiary.Text = resDiary.Content;
+            }
             tvMonthDayTitle.TextSize = 17;
             tvMonthDayTitle.SetTypeface(Android.Graphics.Typeface.Default, Android.Graphics.TypefaceStyle.Normal);
             Singleton.Instance.DLinearLayout.AddView(tvDiary);
