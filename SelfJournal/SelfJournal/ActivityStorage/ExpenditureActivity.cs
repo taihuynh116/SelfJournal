@@ -11,10 +11,11 @@ using Android.Views;
 using Android.Widget;
 using SelfJournal.SingleData;
 using SelfJournal.Utilities;
+using ToolbarV7 = Android.Support.V7.Widget.Toolbar;
 
 namespace SelfJournal.ActivityStorage
 {
-    [Activity(Label = "ExpenditureActivity")]
+    [Activity(Label = "Expenditure")]
     public class ExpenditureActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)

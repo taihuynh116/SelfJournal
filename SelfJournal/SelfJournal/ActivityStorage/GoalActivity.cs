@@ -51,6 +51,20 @@ namespace SelfJournal.ActivityStorage
             Singleton.Instance.GoalSpinner.OnItemSelectedListener = new SpinnerOnItemSelectedListener();
             Singleton.Instance.GoalSpinner.SetSelection(0);
         }
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.addGoalToolbarMenu, menu);
+
+            return base.OnCreateOptionsMenu(menu);
+        }
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            if (item.ItemId == Resource.Id.addGoalItem)
+            {
+                new AddGoalDialogFragment().Show(Singleton.Instance.GoalActivity.FragmentManager, "Add Goal");
+            }
+            return base.OnOptionsItemSelected(item);
+        }
     }
     public class SpinnerOnItemSelectedListener :Java.Lang.Object, AdapterView.IOnItemSelectedListener
     {

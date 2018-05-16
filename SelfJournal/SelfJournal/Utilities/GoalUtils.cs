@@ -67,5 +67,20 @@ namespace SelfJournal.Utilities
             }
             Singleton.Instance.tvGoalContent.Text = sb.ToString();
         }
+        public static void AddGoal()
+        {
+            var resGoalTime = GoalTimeDao.GetGoalTime();
+            if (resGoalTime == null) return;
+            switch (resGoalTime.Name)
+            {
+                case "Year":
+                    Singleton.Instance.addgo
+                    break;
+                case "Month":
+                    break;
+                case "Day":
+                    break;
+            }
+        }
     }
 }

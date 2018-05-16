@@ -1,4 +1,6 @@
-﻿using Android.Widget;
+﻿using Android.App;
+using Android.Views;
+using Android.Widget;
 using SelfJournal.ActivityStorage;
 using System;
 
@@ -57,6 +59,12 @@ namespace SelfJournal.SingleData
         public TextView tvGoalTitle { get; set; }
         public TextView tvGoalContent { get; set; }
         public Spinner GoalSpinner { get; set; }
+        #endregion
+
+        #region Add Goal Dialog and its controls
+        public AlertDialog AddGoalDialog { get; set; }
+        public View AddGoalView { get; set; }
+        public EditText AddGoalEditText { get; set; }
         #endregion
     }
 }
