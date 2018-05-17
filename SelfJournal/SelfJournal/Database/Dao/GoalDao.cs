@@ -18,5 +18,11 @@ namespace SelfJournal.Database.Dao
         {
             DatabaseDao.Insert(ConstantValue.Goal, new List<string> { "Name" }, new List<object> { name });
         }
+        public static List<Goal> GetGoalsNotSetInMonth(int idMonth)
+        {
+            var resGoalOfMonths = GoalOfMonthDao.GetGoalOfMonths(idMonth);
+            var res = SelfJournalDbContext.Instance.Goals.Where(x => !resGoalOfMonths.Select(y => y.IDGoal).Contains(x.ID));
+            return res.ToList();
+        }
     }
 }
