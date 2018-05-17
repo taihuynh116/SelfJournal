@@ -65,6 +65,7 @@ namespace SelfJournal.SingleData
         public AlertDialog AddGoalDialog { get; set; }
         public View AddGoalView { get; set; }
         public EditText AddGoalEditText { get; set; }
+        public LinearLayout AGLinearLayout { get; set; }
         #endregion
     }
 }

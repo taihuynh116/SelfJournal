@@ -24,8 +24,8 @@ namespace SelfJournal.ActivityStorage
             Singleton.Instance.AddGoalView = LayoutInflater.From(Singleton.Instance.GoalActivity)
                 .Inflate(Resource.Layout.AddGoal, null);
 
-            Singleton.Instance.AddGoalEditText = (EditText)Singleton.Instance.AddGoalView.FindViewById(Resource.Id.etGoalOfYear);
-            Singleton.Instance.AddGoalEditText.OnFocusChangeListener = new GoalEditTextOnFocusChangeListener();
+            Singleton.Instance.AGLinearLayout = (LinearLayout)Singleton.Instance.AddGoalView.FindViewById(Resource.Id.overallLayout);
+            GoalUtils.AddGoal();
 
             Singleton.Instance.AddGoalDialog = new AlertDialog.Builder(Singleton.Instance.GoalActivity)
                 .SetView(Singleton.Instance.AddGoalView)
@@ -33,30 +33,6 @@ namespace SelfJournal.ActivityStorage
                 .SetPositiveButton("OK", new AddGoalDialogOnClickListener()).Create();
             
             return Singleton.Instance.AddGoalDialog;
-        }
-    }
-    public class AddGoalDialogOnClickListener : Java.Lang.Object, IDialogInterfaceOnClickListener
-    {
-        public void OnClick(IDialogInterface dialog, int which)
-        {
-            InputMethodManager imm = (InputMethodManager)Singleton.Instance.GoalActivity.GetSystemService(Context.InputMethodService);
-            imm.HideSoftInputFromWindow(Singleton.Instance.AddGoalView.WindowToken, HideSoftInputFlags.None);
-
-            GoalDao.Insert(Singleton.Instance.AddGoalEditText.Text);
-            GoalUtils.GetGoal();
-            dialog.Dismiss();
-        }
-    }
-    public class GoalEditTextOnFocusChangeListener : Java.Lang.Object, View.IOnFocusChangeListener
-    {
-        public void OnFocusChange(View v, bool hasFocus)
-        {
-            if (hasFocus)
-            {
-                InputMethodManager imm =(InputMethodManager) Singleton.Instance.GoalActivity.GetSystemService(Context.InputMethodService);
-                imm.ShowSoftInput(Singleton.Instance.AddGoalView, ShowFlags.Forced);
-                imm.ToggleSoftInput(ShowFlags.Forced, HideSoftInputFlags.ImplicitOnly);
-            }
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using Android.Content;
+using Android.Views;
+using Android.Views.InputMethods;
 using Android.Widget;
 using SelfJournal.ActivityStorage;
 using SelfJournal.Constant;
@@ -74,13 +76,60 @@ namespace SelfJournal.Utilities
             switch (resGoalTime.Name)
             {
                 case "Year":
-                    Singleton.Instance.addgo
+                    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.WrapContent);
+
+                    Singleton.Instance.AddGoalEditText = new EditText(Singleton.Instance.GoalActivity)
+                    {
+                        LayoutParameters = lp,
+                    };
+                    Singleton.Instance.AddGoalEditText.OnFocusChangeListener = new GoalEditTextOnFocusChangeListener();
+                    Singleton.Instance.AGLinearLayout.AddView(Singleton.Instance.AddGoalEditText);
+                    
                     break;
                 case "Month":
                     break;
                 case "Day":
                     break;
             }
+        }
+    }
+
+    public class GoalEditTextOnFocusChangeListener : Java.Lang.Object, View.IOnFocusChangeListener
+    {
+        public void OnFocusChange(View v, bool hasFocus)
+        {
+            if (hasFocus)
+            {
+                InputMethodManager imm = (InputMethodManager)Singleton.Instance.GoalActivity.GetSystemService(Context.InputMethodService);
+                imm.ShowSoftInput(Singleton.Instance.AddGoalView, ShowFlags.Forced);
+                imm.ToggleSoftInput(ShowFlags.Forced, HideSoftInputFlags.ImplicitOnly);
+            }
+        }
+    }
+    public class AddGoalDialogOnClickListener : Java.Lang.Object, IDialogInterfaceOnClickListener
+    {
+        public void OnClick(IDialogInterface dialog, int which)
+        {
+            var resGoalTime = GoalTimeDao.GetGoalTime();
+            if (resGoalTime == null) return;
+            switch (resGoalTime.Name)
+            {
+                case "Year":
+                    InputMethodManager imm = (InputMethodManager)Singleton.Instance.GoalActivity.GetSystemService(Context.InputMethodService);
+                    imm.HideSoftInputFromWindow(Singleton.Instance.AddGoalView.WindowToken, HideSoftInputFlags.None);
+
+                    GoalDao.Insert(Singleton.Instance.AddGoalEditText.Text);
+                    GoalUtils.GetGoal();
+                    dialog.Dismiss();
+                    break;
+                case "Month":
+                    dialog.Dismiss();
+                    break;
+                case "Day":
+                    dialog.Dismiss();
+                    break;
+            }
+            
         }
     }
 }
