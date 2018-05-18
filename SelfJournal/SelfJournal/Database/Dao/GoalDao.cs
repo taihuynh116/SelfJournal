@@ -24,5 +24,11 @@ namespace SelfJournal.Database.Dao
             var res = SelfJournalDbContext.Instance.Goals.Where(x => !resGoalOfMonths.Select(y => y.IDGoal).Contains(x.ID));
             return res.ToList();
         }
+        public static void Delete(int id)
+        {
+            var resGoalOfMonths = GoalOfMonthDao.GetGoalOfMonthsWithIDGoal(id);
+            resGoalOfMonths.ForEach(x => GoalOfMonthDao.Delete(x.ID));
+            DatabaseDao.Delete(ConstantValue.Goal, new List<string> { "ID" }, new List<object> { id });
+        }
     }
 }

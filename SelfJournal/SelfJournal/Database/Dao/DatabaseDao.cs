@@ -74,5 +74,33 @@ namespace SelfJournal.Database.Dao
                 connection.Close();
             }
         }
+        public static void Delete(string tableName, List<string> keys, List<object> values)
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < keys.Count; i++)
+            {
+                sb.Append(keys[i] + "=");
+                if (values[i] is string)
+                {
+                    sb.Append("N\'" + values[i] + "\' ");
+                }
+                else if (values[i] is DateTime)
+                {
+                    sb.Append("cast(\'" + ((DateTime)values[i]).ToString("yyyy-MM-dd HH:mm:ss") + "\' as datetime) ");
+                }
+                else
+                {
+                    sb.Append(values[i].ToString() + " ");
+                }
+            }
+            using (SqlConnection connection = new SqlConnection(ConstantValue.ConnectionString))
+            {
+                SqlCommand command = new SqlCommand("delete from " + tableName + " where " +sb + ";",connection);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
     }
 }

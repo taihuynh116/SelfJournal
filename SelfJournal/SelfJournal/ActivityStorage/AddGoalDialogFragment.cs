@@ -25,13 +25,12 @@ namespace SelfJournal.ActivityStorage
                 .Inflate(Resource.Layout.AddGoal, null);
 
             Singleton.Instance.AGLinearLayout = (LinearLayout)Singleton.Instance.AddGoalView.FindViewById(Resource.Id.overallLayout);
-            GoalUtils.AddGoal();
-
             Singleton.Instance.AddGoalDialog = new AlertDialog.Builder(Singleton.Instance.GoalActivity)
                 .SetView(Singleton.Instance.AddGoalView)
-                .SetTitle("Goal of Year")
                 .SetPositiveButton("OK", new AddGoalDialogOnClickListener()).Create();
-            
+
+            GoalUtils.AddGoal();
+
             return Singleton.Instance.AddGoalDialog;
         }
     }

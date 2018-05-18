@@ -9,6 +9,7 @@ using SelfJournal.Database.EF;
 using SelfJournal.SingleData;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace SelfJournal.Utilities
@@ -71,27 +72,197 @@ namespace SelfJournal.Utilities
         }
         public static void AddGoal()
         {
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.WrapContent);
             var resGoalTime = GoalTimeDao.GetGoalTime();
             if (resGoalTime == null) return;
             switch (resGoalTime.Name)
             {
                 case "Year":
-                    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.WrapContent);
-
+                    Singleton.Instance.AddGoalDialog.SetTitle("Goal of Year");
                     Singleton.Instance.AddGoalEditText = new EditText(Singleton.Instance.GoalActivity)
                     {
                         LayoutParameters = lp,
                     };
                     Singleton.Instance.AddGoalEditText.OnFocusChangeListener = new GoalEditTextOnFocusChangeListener();
                     Singleton.Instance.AGLinearLayout.AddView(Singleton.Instance.AddGoalEditText);
-                    
+
                     break;
                 case "Month":
+                    Singleton.Instance.AddGoalDialog.SetTitle("Goal of Month");
+                    Singleton.Instance.GoalCheckBoxs = new List<ProjectData.GoalCheckBox>();
+                    var resGoals = GoalDao.GetGoalsNotSetInMonth(Singleton.Instance.IDMonth);
+                    for (int i = 0; i < resGoals.Count; i++)
+                    {
+                        RelativeLayout rl = new RelativeLayout(Singleton.Instance.GoalActivity)
+                        {
+                            LayoutParameters = lp
+                        };
+                        Singleton.Instance.AGLinearLayout.AddView(rl);
+
+                        RelativeLayout.LayoutParams lpTv = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WrapContent, RelativeLayout.LayoutParams.WrapContent);
+                        lpTv.AddRule(LayoutRules.AlignParentLeft);
+                        TextView tv = new TextView(Singleton.Instance.GoalActivity)
+                        {
+                            LayoutParameters = lpTv,
+                            Text = resGoals[i].Name,
+                            TextSize = 15
+                        };
+                        rl.AddView(tv);
+
+                        RelativeLayout.LayoutParams lpChk = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WrapContent, RelativeLayout.LayoutParams.WrapContent);
+                        lpChk.AddRule(LayoutRules.AlignParentRight);
+                        CheckBox chk = new CheckBox(Singleton.Instance.GoalActivity)
+                        {
+                            LayoutParameters = lpChk,
+                        };
+                        rl.AddView(chk);
+
+                        Singleton.Instance.GoalCheckBoxs.Add(new ProjectData.GoalCheckBox { IDGoal = resGoals[i].ID, CheckBox = chk });
+                    }
                     break;
                 case "Day":
+                    Singleton.Instance.AddGoalDialog.SetTitle("Goal of Day");
+                    Singleton.Instance.GoalCheckBoxs = new List<ProjectData.GoalCheckBox>();
+                    var resGoalOfMonths = GoalOfMonthDao.GetGoalsNotSetInDay(Singleton.Instance.IDDay);
+                    for (int i = 0; i < resGoalOfMonths.Count; i++)
+                    {
+                        RelativeLayout rl = new RelativeLayout(Singleton.Instance.GoalActivity)
+                        {
+                            LayoutParameters = lp
+                        };
+                        Singleton.Instance.AGLinearLayout.AddView(rl);
+
+                        RelativeLayout.LayoutParams lpTv = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WrapContent, RelativeLayout.LayoutParams.WrapContent);
+                        lpTv.AddRule(LayoutRules.AlignParentLeft);
+                        TextView tv = new TextView(Singleton.Instance.GoalActivity)
+                        {
+                            LayoutParameters = lpTv,
+                            Text = GoalDao.GetGoal(resGoalOfMonths[i].IDGoal).Name,
+                            TextSize = 15
+                        };
+                        rl.AddView(tv);
+
+                        RelativeLayout.LayoutParams lpChk = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WrapContent, RelativeLayout.LayoutParams.WrapContent);
+                        lpChk.AddRule(LayoutRules.AlignParentRight);
+                        CheckBox chk = new CheckBox(Singleton.Instance.GoalActivity)
+                        {
+                            LayoutParameters = lpChk
+                        };
+                        rl.AddView(chk);
+
+                        Singleton.Instance.GoalCheckBoxs.Add(new ProjectData.GoalCheckBox { IDGoal = resGoalOfMonths[i].ID, CheckBox = chk });
+                    }
                     break;
             }
         }
+        public static void DeleteGoal()
+        {
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.WrapContent);
+            var resGoalTime = GoalTimeDao.GetGoalTime();
+            if (resGoalTime == null) return;
+            switch (resGoalTime.Name)
+            {
+                case "Year":
+                    Singleton.Instance.GoalCheckBoxs = new List<ProjectData.GoalCheckBox>();
+                    Singleton.Instance.DeleteGoalDialog.SetTitle("Goal of Month");
+                    var resGoals = SelfJournalDbContext.Instance.Goals;
+                    for (int i = 0; i < resGoals.Count; i++)
+                    {
+                        RelativeLayout rl = new RelativeLayout(Singleton.Instance.GoalActivity)
+                        {
+                            LayoutParameters = lp
+                        };
+                        Singleton.Instance.DGLinearLayout.AddView(rl);
+
+                        RelativeLayout.LayoutParams lpTv = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WrapContent, RelativeLayout.LayoutParams.WrapContent);
+                        lpTv.AddRule(LayoutRules.AlignParentLeft);
+                        TextView tv = new TextView(Singleton.Instance.GoalActivity)
+                        {
+                            LayoutParameters = lpTv,
+                            Text = resGoals[i].Name,
+                            TextSize = 15
+                        };
+                        rl.AddView(tv);
+
+                        RelativeLayout.LayoutParams lpChk = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WrapContent, RelativeLayout.LayoutParams.WrapContent);
+                        lpChk.AddRule(LayoutRules.AlignParentRight);
+                        CheckBox chk = new CheckBox(Singleton.Instance.GoalActivity)
+                        {
+                            LayoutParameters = lpChk
+                        };
+                        rl.AddView(chk);
+
+                        Singleton.Instance.GoalCheckBoxs.Add(new ProjectData.GoalCheckBox { IDGoal = resGoals[i].ID, CheckBox = chk });
+                    }
+                    break;
+                case "Month":
+                    Singleton.Instance.GoalCheckBoxs = new List<ProjectData.GoalCheckBox>();
+                    Singleton.Instance.DeleteGoalDialog.SetTitle("Goal of Month");
+                    var resGoalOfMonths = GoalOfMonthDao.GetGoalOfMonths(Singleton.Instance.IDMonth);
+                    for (int i = 0; i < resGoalOfMonths.Count; i++)
+                    {
+                        RelativeLayout rl = new RelativeLayout(Singleton.Instance.GoalActivity)
+                        {
+                            LayoutParameters = lp
+                        };
+                        Singleton.Instance.DGLinearLayout.AddView(rl);
+
+                        RelativeLayout.LayoutParams lpTv = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WrapContent, RelativeLayout.LayoutParams.WrapContent);
+                        lpTv.AddRule(LayoutRules.AlignParentLeft);
+                        TextView tv = new TextView(Singleton.Instance.GoalActivity)
+                        {
+                            LayoutParameters = lpTv,
+                            Text = GoalDao.GetGoal(resGoalOfMonths[i].IDGoal).Name,
+                            TextSize = 15
+                        };
+                        rl.AddView(tv);
+
+                        RelativeLayout.LayoutParams lpChk = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WrapContent, RelativeLayout.LayoutParams.WrapContent);
+                        lpChk.AddRule(LayoutRules.AlignParentRight);
+                        CheckBox chk = new CheckBox(Singleton.Instance.GoalActivity)
+                        {
+                            LayoutParameters = lpChk
+                        };
+                        rl.AddView(chk);
+
+                        Singleton.Instance.GoalCheckBoxs.Add(new ProjectData.GoalCheckBox { IDGoal = resGoalOfMonths[i].ID, CheckBox = chk });
+                    }
+                    break;
+                case "Day":
+                    Singleton.Instance.GoalCheckBoxs = new List<ProjectData.GoalCheckBox>();
+                    Singleton.Instance.DeleteGoalDialog.SetTitle("Goal of Day");
+                    var resGoalOfDays = GoalOfDayDao.GetGoalOfDays(Singleton.Instance.IDDay);
+                    for (int i = 0; i < resGoalOfDays.Count; i++)
+                    {
+                        RelativeLayout rl = new RelativeLayout(Singleton.Instance.GoalActivity)
+                        {
+                            LayoutParameters = lp
+                        };
+                        Singleton.Instance.DGLinearLayout.AddView(rl);
+
+                        RelativeLayout.LayoutParams lpTv = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WrapContent, RelativeLayout.LayoutParams.WrapContent);
+                        lpTv.AddRule(LayoutRules.AlignParentLeft);
+                        TextView tv = new TextView(Singleton.Instance.GoalActivity)
+                        {
+                            LayoutParameters = lpTv,
+                            Text = GoalDao.GetGoal(GoalOfMonthDao.GetGoalOfMonth(resGoalOfDays[i].IDGoalOfMonth).IDGoal).Name,
+                            TextSize = 15
+                        };
+                        rl.AddView(tv);
+
+                        RelativeLayout.LayoutParams lpChk = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WrapContent, RelativeLayout.LayoutParams.WrapContent);
+                        lpChk.AddRule(LayoutRules.AlignParentRight);
+                        CheckBox chk = new CheckBox(Singleton.Instance.GoalActivity)
+                        {
+                            LayoutParameters = lpChk
+                        };
+                        rl.AddView(chk);
+
+                        Singleton.Instance.GoalCheckBoxs.Add(new ProjectData.GoalCheckBox { IDGoal = resGoalOfDays[i].ID, CheckBox = chk });
+                    }
+                    break;
+            }
+            }
     }
 
     public class GoalEditTextOnFocusChangeListener : Java.Lang.Object, View.IOnFocusChangeListener
@@ -123,13 +294,79 @@ namespace SelfJournal.Utilities
                     dialog.Dismiss();
                     break;
                 case "Month":
+                    foreach (var item in Singleton.Instance.GoalCheckBoxs)
+                    {
+                        CheckBox chk = item.CheckBox;
+                        if (chk.Checked)
+                        {
+                            GoalOfMonthDao.Insert(item.IDGoal, Singleton.Instance.IDMonth);
+                        }
+                    }
+                    GoalUtils.GetGoal();
                     dialog.Dismiss();
                     break;
                 case "Day":
+                    foreach (var item in Singleton.Instance.GoalCheckBoxs)
+                    {
+                        CheckBox chk = item.CheckBox;
+                        if (chk.Checked)
+                        {
+                            GoalOfDayDao.Insert(item.IDGoal, Singleton.Instance.IDDay);
+                        }
+                    }
+                    GoalUtils.GetGoal();
                     dialog.Dismiss();
                     break;
             }
-            
+
+        }
+    }
+    public class DeleteGoalDialogOnClickListener : Java.Lang.Object, IDialogInterfaceOnClickListener
+    {
+        public void OnClick(IDialogInterface dialog, int which)
+        {
+            var resGoalTime = GoalTimeDao.GetGoalTime();
+            if (resGoalTime == null) return;
+            switch (resGoalTime.Name)
+            {
+                case "Year":
+                    foreach (var item in Singleton.Instance.GoalCheckBoxs)
+                    {
+                        CheckBox chk = item.CheckBox;
+                        if (chk.Checked)
+                        {
+                            GoalDao.Delete(item.IDGoal);
+                        }
+                    }
+                    GoalUtils.GetGoal();
+                    dialog.Dismiss();
+                    break;
+                case "Month":
+                    foreach (var item in Singleton.Instance.GoalCheckBoxs)
+                    {
+                        CheckBox chk = item.CheckBox;
+                        if (chk.Checked)
+                        {
+                            GoalOfMonthDao.Delete(item.IDGoal);
+                        }
+                    }
+                    GoalUtils.GetGoal();
+                    dialog.Dismiss();
+                    break;
+                case "Day":
+                    foreach (var item in Singleton.Instance.GoalCheckBoxs)
+                    {
+                        CheckBox chk = item.CheckBox;
+                        if (chk.Checked)
+                        {
+                            GoalOfDayDao.Delete(item.IDGoal);
+                        }
+                    }
+                    GoalUtils.GetGoal();
+                    dialog.Dismiss();
+                    break;
+            }
+
         }
     }
 }

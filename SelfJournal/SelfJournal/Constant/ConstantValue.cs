@@ -21,6 +21,10 @@ namespace SelfJournal.Constant
         public static string GoalOfYearTitle = "Goal of Year";
         public static string GoalOfMonthTitle = "Goal of Month: ";
         public static string GoalOfDayTitle = "Goal of Day: ";
+
+        public static int TestCount = 5;
+        public static bool isSet = false;
+        public static bool isSetYear = false;
     }
     public enum MonthEnum
     {
