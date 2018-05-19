@@ -21,10 +21,55 @@ namespace SelfJournal.Utilities
             Intent i = new Intent(Singleton.Instance.MainActivity, typeof(GoalActivity));
             Singleton.Instance.MainActivity.StartActivity(i);
         }
-        public static void GetGoal()
+        public static string GetGoalsYear()
+        {
+            List<Goal> goals = SelfJournalDbContext.Instance.Goals;
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < goals.Count; i++)
+            {
+                sb.Append("- " + goals[i].Name);
+                if (i != goals.Count - 1) sb.Append("\n");
+            }
+            return sb.ToString();
+        }
+        public static string GetGoalsMonth(int idMonth)
+        {
+            List<Goal> goals = new List<Goal>();
+
+            var resGoalOfMonths = GoalOfMonthDao.GetGoalOfMonths(idMonth);
+            for (int i = 0; i < resGoalOfMonths.Count; i++)
+            {
+                var resGoal = GoalDao.GetGoal(resGoalOfMonths[i].IDGoal);
+                if (resGoal != null) goals.Add(resGoal);
+            }
+
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < goals.Count; i++)
+            {
+                sb.Append("- " + goals[i].Name);
+                if (i != goals.Count - 1) sb.Append("\n");
+            }
+            return sb.ToString();
+        }
+        public static string GetGoalsDay(int idMonth, int idDay)
+        {
+            List<Goal> goals = new List<Goal>();
+
+            var resGoalOfDays = GoalOfDayDao.GetGoalOfDays(id);
+            for (int i = 0; i < resGoalOfDays.Count; i++)
+            {
+                var resGoalOfMonth = GoalOfMonthDao.GetGoalOfMonth(resGoalOfDays[i].IDGoalOfMonth);
+                if (resGoalOfMonth != null)
+                {
+                    var resGoal = GoalDao.GetGoal(resGoalOfMonth.IDGoal);
+                    if (resGoal != null) goals.Add(resGoal);
+                }
+            }
+        }
+        public static string GetGoalContent(int id)
         {
             var resGoalTime = GoalTimeDao.GetGoalTime();
-            if (resGoalTime == null) return;
+            if (resGoalTime == null) return "";
 
             List<Goal> goals = new List<Goal>();
             switch (resGoalTime.Name)
@@ -34,13 +79,13 @@ namespace SelfJournal.Utilities
                     goals = SelfJournalDbContext.Instance.Goals;
                     break;
                 case "Month":
-                    var resMonth = MonthDao.GetMonth(Singleton.Instance.IDMonth);
-                    if (resMonth != null)
-                    {
-                        Singleton.Instance.tvGoalTitle.Text = ": " + resMonth.Name;
-                    }
+                    //var resMonth = MonthDao.GetMonth(id);
+                    //if (resMonth != null)
+                    //{
+                    //    Singleton.Instance.tvGoalTitle.Text = ": " + resMonth.Name;
+                    //}
 
-                    var resGoalOfMonths = GoalOfMonthDao.GetGoalOfMonths(Singleton.Instance.IDMonth);
+                    var resGoalOfMonths = GoalOfMonthDao.GetGoalOfMonths(id);
                     for (int i = 0; i < resGoalOfMonths.Count; i++)
                     {
                         var resGoal = GoalDao.GetGoal(resGoalOfMonths[i].IDGoal);
@@ -48,8 +93,7 @@ namespace SelfJournal.Utilities
                     }
                     break;
                 case "Day":
-                    Singleton.Instance.tvGoalTitle.Text = ": " + Singleton.Instance.IDDay;
-                    var resGoalOfDays = GoalOfDayDao.GetGoalOfDays(Singleton.Instance.IDDay);
+                    var resGoalOfDays = GoalOfDayDao.GetGoalOfDays(id);
                     for (int i = 0; i < resGoalOfDays.Count; i++)
                     {
                         var resGoalOfMonth = GoalOfMonthDao.GetGoalOfMonth(resGoalOfDays[i].IDGoalOfMonth);
@@ -68,7 +112,7 @@ namespace SelfJournal.Utilities
                 sb.Append("- " + goals[i].Name);
                 if (i != goals.Count - 1) sb.Append("\n");
             }
-            Singleton.Instance.tvGoalContent.Text = sb.ToString();
+            return sb.ToString();
         }
         public static void AddGoal()
         {

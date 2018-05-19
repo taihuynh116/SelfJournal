@@ -1807,8 +1807,8 @@ namespace SelfJournal
 			// aapt resource value: 0x7f0a003d
 			public const int expanded_menu = 2131361853;
 			
-			// aapt resource value: 0x7f0a0058
-			public const int goalViewPager = 2131361880;
+			// aapt resource value: 0x7f0a005a
+			public const int goalViewPager = 2131361882;
 			
 			// aapt resource value: 0x7f0a0004
 			public const int home = 2131361796;
@@ -1951,8 +1951,8 @@ namespace SelfJournal
 			// aapt resource value: 0x7f0a002f
 			public const int spacer = 2131361839;
 			
-			// aapt resource value: 0x7f0a0059
-			public const int spinner = 2131361881;
+			// aapt resource value: 0x7f0a0058
+			public const int spinner = 2131361880;
 			
 			// aapt resource value: 0x7f0a0007
 			public const int split_action_bar = 2131361799;
@@ -2026,8 +2026,8 @@ namespace SelfJournal
 			// aapt resource value: 0x7f0a005b
 			public const int tvGoalContent = 2131361883;
 			
-			// aapt resource value: 0x7f0a005a
-			public const int tvGoalTitle = 2131361882;
+			// aapt resource value: 0x7f0a0059
+			public const int tvGoalTitle = 2131361881;
 			
 			// aapt resource value: 0x7f0a005f
 			public const int tvHabbit = 2131361887;

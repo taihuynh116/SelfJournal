@@ -22,7 +22,7 @@ namespace SelfJournal.Constant
         public static string GoalOfMonthTitle = "Goal of Month: ";
         public static string GoalOfDayTitle = "Goal of Day: ";
 
-        public static int TestCount = 5;
+        public static int TestCount = 12;
         public static bool isSet = false;
         public static bool isSetYear = false;
     }

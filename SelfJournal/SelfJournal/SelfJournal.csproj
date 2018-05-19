@@ -121,6 +121,8 @@
     <Compile Include="ProjectData\GoalCheckBox.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SingleData\Dao\GoalContextDao.cs" />
+    <Compile Include="SingleData\EF\GoalContext.cs" />
     <Compile Include="SingleData\Singleton.cs" />
     <Compile Include="Utilities\DiaryUtils.cs" />
     <Compile Include="Utilities\EmotionUtils.cs" />

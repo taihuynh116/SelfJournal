@@ -19,6 +19,9 @@ using SelfJournal.Database.EF;
 using Android.Support.V4.View;
 using Android.Support.V4.App;
 using SelfJournal.Constant;
+using SelfJournal.SingleData.EF;
+using SelfJournal.SingleData.Dao;
+using Java.Lang;
 
 namespace SelfJournal.ActivityStorage
 {
@@ -34,19 +37,35 @@ namespace SelfJournal.ActivityStorage
 
             #region Get Layout Controls
             Singleton.Instance.GoalActivity = this;
+            Singleton.Instance.GoalSpinner = (Spinner)FindViewById(Resource.Id.spinner);
+            Singleton.Instance.tvGoalTitle = (TextView)FindViewById(Resource.Id.tvGoalTitle);
             Singleton.Instance.GoalViewPager = FindViewById<ViewPager>(Resource.Id.goalViewPager);
             #endregion
 
-            
+            ToolbarV7 toolbar = (ToolbarV7)FindViewById(Resource.Id.toolbar);
+            Singleton.Instance.GoalActivity.SetSupportActionBar(toolbar);
+            Singleton.Instance.GoalActivity.SupportActionBar.Title = "Goal of";
+
+            List<string> values = SelfJournalDbContext.Instance.GoalTimes.Select(x => x.Name).ToList();
+
+            ArrayAdapter<string> myAdapter = new ArrayAdapter<string>(Singleton.Instance.GoalActivity,
+                Android.Resource.Layout.SimpleListItem1, values);
+            myAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleDropDownItem1Line);
+
+            Singleton.Instance.GoalSpinner.Adapter = myAdapter;
+            Singleton.Instance.GoalSpinner.SetSelection(1);
+            Singleton.Instance.GoalSpinner.OnItemSelectedListener = new SpinnerOnItemSelectedListener();
 
             Singleton.Instance.GoalViewPager.Adapter = new GoalFragmentAdapter(SupportFragmentManager);
-        }
-        //public override bool OnCreateOptionsMenu(IMenu menu)
-        //{
-        //    MenuInflater.Inflate(Resource.Menu.addGoalToolbarMenu, menu);
+            Singleton.Instance.GoalViewPager.AddOnPageChangeListener(new GoalFragmentPagerChangeListener());
 
-        //    return base.OnCreateOptionsMenu(menu);
-        //}
+            Singleton.Instance.tvGoalTitle.Text = "Day 1";
+        }
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.addGoalToolbarMenu, menu);
+            return base.OnCreateOptionsMenu(menu);
+        }
         //public override bool OnOptionsItemSelected(IMenuItem item)
         //{
         //    if (item.ItemId == Resource.Id.addGoalItem)
@@ -76,8 +95,33 @@ namespace SelfJournal.ActivityStorage
         public override Android.Support.V4.App.Fragment GetItem(int position)
         {
             //return Singleton.Instance.GoalFragment;
-            return new GoalFragment(position);
+            return GoalContextDao.GetGoalContext(position).GoalFragment;
         }
     }
-    
+    public class GoalFragmentPagerChangeListener : Java.Lang.Object, ViewPager.IOnPageChangeListener
+    {
+        public void OnPageScrolled(int position, float positionOffset, int positionOffsetPixels)
+        {
+        }
+
+        public void OnPageScrollStateChanged(int state)
+        {
+        }
+
+        public void OnPageSelected(int position)
+        {
+            //Singleton.Instance.tvGoalTitle.Text = "Day " + (position+1);
+        }
+    }
+    public class SpinnerOnItemSelectedListener : Java.Lang.Object, AdapterView.IOnItemSelectedListener
+    {
+        public void OnItemSelected(AdapterView parent, View view, int position, long id)
+        {
+        }
+
+        public void OnNothingSelected(AdapterView parent)
+        {
+
+        }
+    }
 }

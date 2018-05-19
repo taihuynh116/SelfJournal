@@ -4,6 +4,7 @@ using Android.Views;
 using Android.Widget;
 using SelfJournal.ActivityStorage;
 using SelfJournal.ProjectData;
+using SelfJournal.SingleData.EF;
 using System;
 using System.Collections.Generic;
 
@@ -26,6 +27,7 @@ namespace SelfJournal.SingleData
         public int IDDay { get; set; }
         public int IDGoalTime { get; set; }
         public List<GoalCheckBox> GoalCheckBoxs { get; set; }
+        public List<GoalContext> GoalContexts { get; set; }
         #endregion
 
         #region Main Activity and its controls
@@ -60,14 +62,6 @@ namespace SelfJournal.SingleData
         #region Goal Activity and its controls
         public GoalActivity GoalActivity { get; set; }
         private GoalFragment goalFragment;
-        public GoalFragment GoalFragment
-        {
-            get
-            {
-                if (goalFragment == null) goalFragment = new GoalFragment(100);
-                return goalFragment;
-            }
-        }
         public ViewPager GoalViewPager { get; set; }
         public LinearLayout GLinearLayout { get; set; }
         public TextView tvGoalTitle { get; set; }
