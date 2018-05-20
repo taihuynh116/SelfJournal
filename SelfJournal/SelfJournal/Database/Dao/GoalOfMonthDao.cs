@@ -32,7 +32,7 @@ namespace SelfJournal.Database.Dao
         }
         public static List<GoalOfMonth> GetGoalsNotSetInDay(int idDay)
         {
-            var resGoalOfDays = GoalOfDayDao.GetGoalOfDays(idDay);
+            var resGoalOfDays = GoalOfDayDao.GetGoalOfDays(0, idDay);
             var res = SelfJournalDbContext.Instance.GoalOfMonths.Where(x => !resGoalOfDays.Select(y => y.IDGoalOfMonth).Contains(x.ID));
             return res.ToList();
         }

@@ -14,7 +14,7 @@ namespace SelfJournal.Database.Dao
         {
             var res = SelfJournalDbContext.Instance.GoalTimes;
             if (res.Count() == 0) return null;
-            return res.OrderByDescending(x=> x.LastUpdate).First();
+            return res.OrderByDescending(x => x.LastUpdate).First();
         }
         public static int GetId(string name)
         {
@@ -25,6 +25,10 @@ namespace SelfJournal.Database.Dao
         public static void Update(int id)
         {
             DatabaseDao.Update(ConstantValue.GoalTime, id, new List<string> { "LastUpdate" }, new List<object> { DateTime.Now });
+        }
+        public static void Update(string name)
+        {
+            Update(GetId(name));
         }
     }
 }

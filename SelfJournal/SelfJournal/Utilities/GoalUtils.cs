@@ -55,7 +55,7 @@ namespace SelfJournal.Utilities
         {
             List<Goal> goals = new List<Goal>();
 
-            var resGoalOfDays = GoalOfDayDao.GetGoalOfDays(id);
+            var resGoalOfDays = GoalOfDayDao.GetGoalOfDays(idMonth, idDay);
             for (int i = 0; i < resGoalOfDays.Count; i++)
             {
                 var resGoalOfMonth = GoalOfMonthDao.GetGoalOfMonth(resGoalOfDays[i].IDGoalOfMonth);
@@ -65,47 +65,6 @@ namespace SelfJournal.Utilities
                     if (resGoal != null) goals.Add(resGoal);
                 }
             }
-        }
-        public static string GetGoalContent(int id)
-        {
-            var resGoalTime = GoalTimeDao.GetGoalTime();
-            if (resGoalTime == null) return "";
-
-            List<Goal> goals = new List<Goal>();
-            switch (resGoalTime.Name)
-            {
-                case "Year":
-                    Singleton.Instance.tvGoalTitle.Text = "";
-                    goals = SelfJournalDbContext.Instance.Goals;
-                    break;
-                case "Month":
-                    //var resMonth = MonthDao.GetMonth(id);
-                    //if (resMonth != null)
-                    //{
-                    //    Singleton.Instance.tvGoalTitle.Text = ": " + resMonth.Name;
-                    //}
-
-                    var resGoalOfMonths = GoalOfMonthDao.GetGoalOfMonths(id);
-                    for (int i = 0; i < resGoalOfMonths.Count; i++)
-                    {
-                        var resGoal = GoalDao.GetGoal(resGoalOfMonths[i].IDGoal);
-                        if (resGoal != null) goals.Add(resGoal);
-                    }
-                    break;
-                case "Day":
-                    var resGoalOfDays = GoalOfDayDao.GetGoalOfDays(id);
-                    for (int i = 0; i < resGoalOfDays.Count; i++)
-                    {
-                        var resGoalOfMonth = GoalOfMonthDao.GetGoalOfMonth(resGoalOfDays[i].IDGoalOfMonth);
-                        if (resGoalOfMonth != null)
-                        {
-                            var resGoal = GoalDao.GetGoal(resGoalOfMonth.IDGoal);
-                            if (resGoal != null) goals.Add(resGoal);
-                        }
-                    }
-                    break;
-            }
-
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < goals.Count; i++)
             {
@@ -114,6 +73,7 @@ namespace SelfJournal.Utilities
             }
             return sb.ToString();
         }
+
         public static void AddGoal()
         {
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.WrapContent);
@@ -275,7 +235,7 @@ namespace SelfJournal.Utilities
                 case "Day":
                     Singleton.Instance.GoalCheckBoxs = new List<ProjectData.GoalCheckBox>();
                     Singleton.Instance.DeleteGoalDialog.SetTitle("Goal of Day");
-                    var resGoalOfDays = GoalOfDayDao.GetGoalOfDays(Singleton.Instance.IDDay);
+                    var resGoalOfDays = GoalOfDayDao.GetGoalOfDays(0, Singleton.Instance.IDDay);
                     for (int i = 0; i < resGoalOfDays.Count; i++)
                     {
                         RelativeLayout rl = new RelativeLayout(Singleton.Instance.GoalActivity)
@@ -306,7 +266,7 @@ namespace SelfJournal.Utilities
                     }
                     break;
             }
-            }
+        }
     }
 
     public class GoalEditTextOnFocusChangeListener : Java.Lang.Object, View.IOnFocusChangeListener
@@ -334,7 +294,7 @@ namespace SelfJournal.Utilities
                     imm.HideSoftInputFromWindow(Singleton.Instance.AddGoalView.WindowToken, HideSoftInputFlags.None);
 
                     GoalDao.Insert(Singleton.Instance.AddGoalEditText.Text);
-                    GoalUtils.GetGoal();
+                    //GoalUtils.GetGoal();
                     dialog.Dismiss();
                     break;
                 case "Month":
@@ -346,7 +306,7 @@ namespace SelfJournal.Utilities
                             GoalOfMonthDao.Insert(item.IDGoal, Singleton.Instance.IDMonth);
                         }
                     }
-                    GoalUtils.GetGoal();
+                    //GoalUtils.GetGoal();
                     dialog.Dismiss();
                     break;
                 case "Day":
@@ -358,7 +318,7 @@ namespace SelfJournal.Utilities
                             GoalOfDayDao.Insert(item.IDGoal, Singleton.Instance.IDDay);
                         }
                     }
-                    GoalUtils.GetGoal();
+                    //GoalUtils.GetGoal();
                     dialog.Dismiss();
                     break;
             }
@@ -382,7 +342,7 @@ namespace SelfJournal.Utilities
                             GoalDao.Delete(item.IDGoal);
                         }
                     }
-                    GoalUtils.GetGoal();
+                    //GoalUtils.GetGoal();
                     dialog.Dismiss();
                     break;
                 case "Month":
@@ -394,7 +354,7 @@ namespace SelfJournal.Utilities
                             GoalOfMonthDao.Delete(item.IDGoal);
                         }
                     }
-                    GoalUtils.GetGoal();
+                    //GoalUtils.GetGoal();
                     dialog.Dismiss();
                     break;
                 case "Day":
@@ -406,7 +366,7 @@ namespace SelfJournal.Utilities
                             GoalOfDayDao.Delete(item.IDGoal);
                         }
                     }
-                    GoalUtils.GetGoal();
+                    //GoalUtils.GetGoal();
                     dialog.Dismiss();
                     break;
             }

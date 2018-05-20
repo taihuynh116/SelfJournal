@@ -40,12 +40,13 @@ namespace SelfJournal.ActivityStorage
 
             #region Get Layout Controls
             GoalContextDao.Update(Index, v.FindViewById<TextView>(Resource.Id.tvGoalContent), v.FindViewById<LinearLayout>(Resource.Id.overallLayout));
-            GoalContextDao.GetGoalContext(Index).tvContent.Text = GoalUtils.GetGoalContent(Index);
+
+            GoalContextDao.GetGoalContext(Index).UpdateTextView();
             #endregion
 
             return v;
         }
-        
+
     }
-    
+
 }

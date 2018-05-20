@@ -61,12 +61,12 @@ namespace SelfJournal.SingleData
 
         #region Goal Activity and its controls
         public GoalActivity GoalActivity { get; set; }
-        private GoalFragment goalFragment;
         public ViewPager GoalViewPager { get; set; }
         public LinearLayout GLinearLayout { get; set; }
         public TextView tvGoalTitle { get; set; }
         public TextView tvGoalContent { get; set; }
         public Spinner GoalSpinner { get; set; }
+        public Spinner MonthSpinner { get; set; }
         #endregion
 
         #region Add Goal Dialog and its controls
