@@ -42,6 +42,16 @@ namespace SelfJournal
             DateTime dt = DateTime.Now;
             Singleton.Instance.IDMonth = dt.Month;
             Singleton.Instance.IDDay = dt.Day;
+
+            Button btnStudy = FindViewById<Button>(Resource.Id.btnStudy);
+            btnStudy.SetOnClickListener(new ButtonStudyOnClickListener());
+        }
+    }
+    public class ButtonStudyOnClickListener : Java.Lang.Object, View.IOnClickListener
+    {
+        public void OnClick(View v)
+        {
+            StudyUtils.StartStudyActivity();
         }
     }
     public class GoalClickListener : Java.Lang.Object, View.IOnClickListener

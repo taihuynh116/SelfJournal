@@ -18,6 +18,12 @@ namespace SelfJournal.Constant
         public static string Month = "Month";
         public static string GoalTime = "GoalTime";
 
+        public static string StudyConnectionString = "data source=103.252.252.163;initial catalog=Study;persist security info=True;user id=misery;password=Skarner116!;MultipleActiveResultSets=True;App=EntityFramework";
+
+        public static string Class = "Class";
+        public static string Content = "Content";
+        public static string Subject = "Subject";
+
         public static string GoalOfYearTitle = "Goal of Year";
         public static string GoalOfMonthTitle = "Goal of Month: ";
         public static string GoalOfDayTitle = "Goal of Day: ";

@@ -63,4 +63,9 @@
             android:textStyle="bold"
             android:id="@+id/tvDiary" />
     </LinearLayout>
+  <Button
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Study"
+    android:id="@+id/btnStudy"/>
 </LinearLayout>

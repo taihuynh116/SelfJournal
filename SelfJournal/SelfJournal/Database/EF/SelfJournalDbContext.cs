@@ -126,18 +126,5 @@ namespace SelfJournal.Database.EF
             }
             return objs;
         }
-        public void UpdateDiary(string content)
-        {
-            using (SqlConnection connection = new SqlConnection(ConstantValue.ConnectionString))
-            {
-                SqlCommand command = new SqlCommand("insert into " + ConstantValue.Diary +" (Content)"+ " values (\'"+ content+"\');", connection);
-
-                connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
-
-                //insert into Diary(Content) values('Ngày 5');
-            }
-        }
     }
 }

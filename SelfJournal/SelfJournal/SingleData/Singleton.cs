@@ -22,6 +22,8 @@ namespace SelfJournal.SingleData
             }
         }
 
+        public CurrentTime CurrentTime { get; set; }
+
         #region Day Data
         public int IDMonth { get; set; }
         public int IDDay { get; set; }

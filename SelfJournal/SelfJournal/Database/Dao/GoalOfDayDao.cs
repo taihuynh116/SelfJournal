@@ -10,7 +10,7 @@ namespace SelfJournal.Database.Dao
     {
         public static List<GoalOfDay> GetGoalOfDays(int idMonth, int idDay)
         {
-            var res = SelfJournalDbContext.Instance.GoalOfDays.Where(x => x.IDMonth == idMonth && x.IDDay == idDay);
+            var res = SelfJournalDbContext.Instance.GoalOfDays.Where(x => x.IDDay == idDay);
             if (res.Count() == 0) return new List<GoalOfDay>();
             return res.ToList();
         }

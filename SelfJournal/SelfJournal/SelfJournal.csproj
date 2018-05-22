@@ -92,6 +92,7 @@
     <Compile Include="ActivityStorage\GoalActivity.cs" />
     <Compile Include="ActivityStorage\GoalFragment.cs" />
     <Compile Include="ActivityStorage\HabbitActivity.cs" />
+    <Compile Include="ActivityStorage\StudyActivity.cs" />
     <Compile Include="Constant\ConstantValue.cs" />
     <Compile Include="Database\Dao\DiaryDao.cs" />
     <Compile Include="Database\Dao\EmotionDao.cs" />
@@ -121,14 +122,21 @@
     <Compile Include="ProjectData\GoalCheckBox.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SingleData\Dao\CurrentTimeDao.cs" />
     <Compile Include="SingleData\Dao\GoalContextDao.cs" />
+    <Compile Include="SingleData\EF\CurrentTime.cs" />
     <Compile Include="SingleData\EF\GoalContext.cs" />
     <Compile Include="SingleData\Singleton.cs" />
+    <Compile Include="StudyDatabase\EF\Class.cs" />
+    <Compile Include="StudyDatabase\EF\Content.cs" />
+    <Compile Include="StudyDatabase\EF\StudyDbContext.cs" />
+    <Compile Include="StudyDatabase\EF\Subject.cs" />
     <Compile Include="Utilities\DiaryUtils.cs" />
     <Compile Include="Utilities\EmotionUtils.cs" />
     <Compile Include="Utilities\ExpenditureUtils.cs" />
     <Compile Include="Utilities\GoalUtils.cs" />
     <Compile Include="Utilities\HabbitUtils.cs" />
+    <Compile Include="Utilities\StudyUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GettingStarted.Xamarin" />
@@ -160,6 +168,9 @@
     <AndroidResource Include="Resources\layout\Goal_Fragment.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\Study.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml">
@@ -173,6 +184,7 @@
     <Folder Include="Resources\mipmap-xhdpi\" />
     <Folder Include="Resources\mipmap-xxhdpi\" />
     <Folder Include="Resources\mipmap-xxxhdpi\" />
+    <Folder Include="StudyDatabase\Dao\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\styles.xml" />
