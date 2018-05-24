@@ -68,7 +68,10 @@ namespace SelfJournal.StudyDatabase.EF
                         object o = Activator.CreateInstance(type);
                         for (int i = 0; i < props.Count; i++)
                         {
-                            props[i].SetValue(o, reader[i]);
+                            object value = reader[i];
+                            if (value == DBNull.Value)
+                                value = null;
+                            props[i].SetValue(o, value);
                         }
                         objs.Add(o);
                     }

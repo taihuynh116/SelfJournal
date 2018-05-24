@@ -29,7 +29,7 @@ namespace SelfJournal.ActivityStorage
             #endregion
 
             TextView tvStudy = FindViewById<TextView>(Resource.Id.tvStudy);
-            tvStudy.Text = StudyDbContext.Instance.Contents[1].content;
+            tvStudy.Text = StudyDbContext.Instance.Contents[StudyDbContext.Instance.Contents.Count-1].content;
         }
     }
 }

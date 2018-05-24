@@ -16,7 +16,7 @@ namespace SelfJournal.StudyDatabase.EF
     {
         public int ID { get; set; }
         public DateTime CreateDate { get; set; }
-        public int ID2 { get; set; }
+        public int? ID2 { get; set; }
         public int IDClass { get; set;}
         public string content { get; set; }
     }
